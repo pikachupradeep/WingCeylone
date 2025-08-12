@@ -1,60 +1,37 @@
 "use client";
 import React, { useState } from "react";
-import { Menu, MenuItem, ProductItem } from "../ui/navbar-menu";
+import { HoveredLink, Menu, MenuItem, ProductItem } from "../ui/navbar-menu";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { RiMenu3Line } from "react-icons/ri";
-import { NavbarDemoMobile } from "./NavbarMobile";
-import './navmob.css'
 
-export function NavbarDemo() {
+export function NavbarDemoMobile() {
   return (
-    <div className="relative w-full flex items-center justify-center">
-      <Navbar className="top-2" />
+    <div className="relative w-full flex items-center justify-center min-h-[8vh]">
+      <MobileNavbar className="top-2" />
      
     </div>
   );
 }
 
-
-
-function Navbar({ className }: { className?: string }) {
+function MobileNavbar({ className }: { className?: string }) {
   const [active, setActive] = useState<string | null>(null);
-  const [navToggle,setnavToggle] = useState("navbarDefault")
-
-
-const handleClick = (): void => {
-    if (navToggle === "navbarDefault") {
-        setnavToggle("navbarOpen");
-    } else {
-        setnavToggle("navbarDefault");
-    }
-};
-
-
   return (
-    <div className={cn("fixed top-10 inset-x-0 max-w-7xl mx-auto z-50 min-h-[8vh] py-3 sm:py-0", className)}>
+    <div className={cn("top-10 w-full inset-x-0 max-w-7xl mx-auto z-50", className)}>
 
         <div className="flex justify-between items-center">
-        <h6 className="font-bold text-nowrap ml-4 text-blue-400 z-[100]">WING CEYLONE</h6>
 
-
-        <div className={`${navToggle}  left-0 w-full absolute`}>
-            <NavbarDemoMobile />
-        </div>
-        
-
-        <div className="">
-            <div className="">
-           {/*Laptop Menu*/}
-       <div className="hidden sm:flex">
+        {/*Mobile Menu*/}
+        <div className="flex flex-col justify-center gap-4  bg-gray-800 text-white left-0 w-full  sm:hidden">
 
         <Menu setActive={setActive}>
+
+        <div className="flex flex-col items-center w-full gap-16 z-50  bg-gray-800 text-white">
         <Link className="text-nowrap" href="/">Home</Link>
 
 
         <MenuItem setActive={setActive} active={active} item="Tours">
-          <div className="text-sm grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 p-4">
+          <div className="text-sm grid grid-cols-1 gap-10 p-4 z-50">
             <ProductItem
               title="Pilgrimage Tours"
               href="https://algochurn.com"
@@ -101,7 +78,7 @@ const handleClick = (): void => {
         </MenuItem>
 
         <MenuItem setActive={setActive} active={active} item="Activities">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+          <div className="grid grid-cols-1 gap-4">
             <ProductItem
               title="Mirissa Whale Waching"
               href="https://algochurn.com"
@@ -143,7 +120,7 @@ const handleClick = (): void => {
         
 
         <MenuItem setActive={setActive} active={active} item="Other">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+          <div className="grid grid-cols-1 gap-4 text-sm">
             <ProductItem
               title="Honeymoon Tours"
               href="https://algochurn.com"
@@ -178,20 +155,13 @@ const handleClick = (): void => {
         </MenuItem>
 
         <Link className="text-nowrap" href="/contact">Contact</Link>
-      </Menu>
-      
 
-      </div>
-       </div>
-      
+        <button className="px-4 py-1 rounded-full bg-blue-700 text-white cursor-pointer">Login</button>
         </div>
 
-       
-
-      <button className="px-4 py-1 rounded-full bg-blue-700 text-white cursor-pointer hidden sm:inline-block">Login</button>
-
-      <RiMenu3Line onClick={handleClick} size={24} className="sm:hidden z-[100] text-gray-500 mr-4 cursor-pointer" />
-
+      </Menu>
+      
+      </div>
 
       </div>
     </div>

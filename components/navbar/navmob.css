@@ -1,0 +1,14 @@
+.navbarDefault {
+  transform: translateY(-300px);
+  transition: all 0.5s ease-in-out;
+  opacity: 0;
+  pointer-events: none; /* Prevent clicks when hidden */
+}
+
+.navbarOpen {
+  transform: none;
+  top: 0;
+  opacity: 1;
+  transition: all 0.5s ease-in-out;
+  pointer-events: auto;
+}
